@@ -5,13 +5,28 @@ export default function Category({
   onAddCategory,
   showAddCategory,
   setShowAddCategory,
+  activeCategory,
+  setActiveCategory,
 }) {
   return (
-    <div>
+    <div className="categories">
       {categories.map((category, index) => (
-        <button key={index}>{category}</button>
+        <button
+          key={index}
+          type="button"
+          className={`category-pill${activeCategory === category ? " category-pill--active" : ""}`}
+          onClick={() => setActiveCategory(category)}
+        >
+          {category}
+        </button>
       ))}
-      <button onClick={() => setShowAddCategory(true)}>+ New Category</button>
+      <button
+        type="button"
+        className="category-pill category-pill--add"
+        onClick={() => setShowAddCategory(true)}
+      >
+        + New Category
+      </button>
       <AddCategory
         onAddCategory={onAddCategory}
         showAddCategory={showAddCategory}
